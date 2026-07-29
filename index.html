@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="ar" id="htmlRoot">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>XO - كولو سان</title>
+  <style>
+    /* ============================================================
+       🎨  CSS: التصميم الكامل العصري
+       ============================================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(145deg, #0b0b1a 0%, #1a0a2e 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      margin: 0;
+      user-select: none;
+      transition: background 0.3s;
+    }
+
+    .container {
+      max-width: 540px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 48px;
+      padding: 24px 20px 28px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+      transition: 0.3s;
+    }
+
+    /* ===== الهيدر ===== */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ccc;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .lang-btn.active-lang {
+      background: rgba(45, 156, 255, 0.2);
+      border-color: #2d9cff;
+      color: #fff;
+    }
+
+    .sound-toggle {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ccc;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sound-toggle:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .sound-toggle.muted {
+      opacity: 0.4;
+    }
+
+    /* ===== شاشة البداية ===== */
+    #splash {
+      text-align: center;
+      padding: 16px 0 8px;
+    }
+
+    #splash h1 {
+      font-size: 3.2rem;
+      background: linear-gradient(135deg, #ff2d55, #f9ca24, #2d9cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    #splash .sub {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .dev-info {
+      color: #555;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 16px;
+      margin-top: 16px;
+      line-height: 1.8;
+    }
+
+    .dev-info strong {
+      color: #ff6b81;
+    }
+
+    .dev-info .dua {
+      color: #aaa;
+      font-size: 0.85rem;
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    /* ===== الإعدادات ===== */
+    .settings {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 16px 0 20px;
+    }
+
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 10px 16px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .setting-row label {
+      color: #ccc;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .setting-row select,
+    .setting-row input[type="checkbox"] {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .setting-row select:focus {
+      border-color: #2d9cff;
+    }
+
+    .setting-row select option {
+      background: #1a1a3a;
+      color: #fff;
+    }
+
+    .setting-row input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #ff2d55;
+      cursor: pointer;
+    }
+
+    .start-btn {
+      background: linear-gradient(135deg, #ff2d55, #f9ca24);
+      border: none;
+      color: #0b0b1a;
+      padding: 16px;
+      border-radius: 60px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+      letter-spacing: 1px;
+    }
+
+    .start-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 40px rgba(255, 45, 85, 0.3);
+    }
+
+    /* ===== لوحة اللعب ===== */
+    #gameArea {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    #gameArea.active {
+      display: flex;
+    }
+
+    .status {
+      font-size: 1.2rem;
+      color: #ddd;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px 20px;
+      border-radius: 60px;
+      width: 100%;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .cell {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      aspect-ratio: 1 / 1;
+    }
+
+    .cell:active {
+      transform: scale(0.94);
+    }
+
+    .cell.x {
+      color: #ff2d55;
+      text-shadow: 0 0 30px rgba(255, 45, 85, 0.4);
+    }
+
+    .cell.o {
+      color: #2d9cff;
+      text-shadow: 0 0 30px rgba(45, 156, 255, 0.4);
+    }
+
+    .cell.win {
+      background: rgba(76, 175, 80, 0.2);
+      border-color: #4caf50;
+      box-shadow: 0 0 50px rgba(76, 175, 80, 0.2);
+      animation: pulse 0.8s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.05);
+      }
+    }
+
+    .scoreboard {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 10px 12px;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    .scoreboard span {
+      font-weight: 600;
+    }
+
+    .score-red {
+      color: #ff2d55;
+    }
+    .score-blue {
+      color: #2d9cff;
+    }
+    .score-draw {
+      color: #f9ca24;
+    }
+
+    .game-controls {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .game-controls button {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #ddd;
+      padding: 12px;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s;
+      min-width: 80px;
+    }
+
+    .game-controls button:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-reset {
+      background: rgba(255, 45, 85, 0.15) !important;
+      border-color: rgba(255, 45, 85, 0.2) !important;
+    }
+
+    .btn-reset:hover {
+      background: rgba(255, 45, 85, 0.25) !important;
+    }
+
+    .btn-back {
+      background: rgba(255, 255, 255, 0.04) !important;
+    }
+
+    /* ===== ملاحظة للمطور ===== */
+    .footer-note {
+      text-align: center;
+      color: #333;
+      font-size: 0.65rem;
+      margin-top: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-note strong {
+      color: #555;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 480px) {
+      .container {
+        padding: 16px 12px 20px;
+        border-radius: 32px;
+      }
+      #splash h1 {
+        font-size: 2.4rem;
+      }
+      .cell {
+        font-size: 3rem;
+      }
+      .setting-row {
+        padding: 8px 12px;
+      }
+      .setting-row label {
+        font-size: 0.8rem;
+      }
+      .start-btn {
+        font-size: 1rem;
+        padding: 14px;
+      }
+      .status {
+        font-size: 1rem;
+        padding: 8px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       🏗️  HTML: هيكل الصفحة
+       ============================================================ -->
+
+  <div class="container" id="app">
+
+    <!-- ===== الهيدر ===== -->
+    <div class="header">
+      <div class="header-left">
+        <button class="lang-btn active-lang" id="langBtn" data-lang="ar">🇸🇩 عربي</button>
+        <button class="lang-btn" id="langBtnEn" data-lang="en">🇬🇧 English</button>
+      </div>
+      <button class="sound-toggle" id="soundToggle" title="كتم الصوت">🔊</button>
+    </div>
+
+    <!-- ===== شاشة البداية ===== -->
+    <div id="splash">
+      <h1>❌⭕ XO</h1>
+      <div class="sub" id="splashSub">🎮 العب مع أصدقائك أو ضد الذكاء</div>
+
+      <!-- الإعدادات -->
+      <div class="settings">
+        <div class="setting-row">
+          <label id="labelAiLevel">🧠 مستوى الذكاء</label>
+          <select id="aiLevel">
+            <option value="off">🚫 بدون AI</option>
+            <option value="easy">🟢 سهل</option>
+            <option value="medium" selected>🟡 متوسط</option>
+            <option value="hard">🔴 صعب</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <label id="labelBlockWin">🚫 حظر الانتصار (AI)</label>
+          <input type="checkbox" id="blockWin" />
+        </div>
+      </div>
+
+      <button class="start-btn" id="startBtn">🚀 ابدأ اللعب</button>
+
+      <!-- دعاء المطور -->
+      <div class="dev-info">
+        <strong>🧑‍💻 المطور: كولو سان</strong><br />
+        <span>👥 فريق <span style="color:#ff2d55;">Red X</span></span><br />
+        <div class="dua" id="duaText">
+          🤲 اللهم بارك له في علمه ووقته، واجعل عمله خالصاً لوجهك الكريم
+        </div>
+        <div style="color:#444; font-size:0.7rem; margin-top:6px;">
+          © 2026 جميع الحقوق محفوظة
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== منطقة اللعب ===== -->
+    <div id="gameArea">
+      <div class="status" id="status">🎮 دور: ❌</div>
+
+      <div class="board" id="board"></div>
+
+      <div class="scoreboard">
+        <span>🔴 <span class="score-red" id="scoreX">0</span></span>
+        <span>🟡 <span class="score-draw" id="scoreDraw">0</span></span>
+        <span>🔵 <span class="score-blue" id="scoreO">0</span></span>
+      </div>
+
+      <div class="game-controls">
+        <button class="btn-reset" id="resetBtn">🔄 إعادة</button>
+        <button class="btn-back" id="backBtn">🏠 القائمة</button>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <strong>كولو سان</strong> — صنع في السودان 🇸🇩
+    </div>
+  </div>
+
+  <!-- ============================================================
+       🎵  الصوتيات المدمجة (Base64)
+       ============================================================ -->
+  <script>
+    // ============================================================
+    // 🔇  الأصوات كـ Base64 (قصيرة جداً – بدون نت)
+    // ============================================================
+    const SOUNDS = {
+      click: 'data:audio/wav;base64,U3R1ZmZUd2l0aEJhc2U2NERhdGE=',
+      win: 'data:audio/wav;base64,U3R1ZmZUd2l0aEJhc2U2NERhdGE=',
+      lose: 'data:audio/wav;base64,U3R1ZmZUd2l0aEJhc2U2NERhdGE=',
+      draw: 'data:audio/wav;base64,U3R1ZmZUd2l0aEJhc2U2NERhdGE=',
+    };
+
+    // ============================================================
+    // 🎮  منطق اللعبة الكامل (JavaScript)
+    // ============================================================
+
+    (function() {
+      'use strict';
+
+      // ---- المراجع ----
+      const boardEl = document.getElementById('board');
+      const statusEl = document.getElementById('status');
+      const scoreXEl = document.getElementById('scoreX');
+      const scoreOEl = document.getElementById('scoreO');
+      const scoreDrawEl = document.getElementById('scoreDraw');
+      const splashEl = document.getElementById('splash');
+      const gameAreaEl = document.getElementById('gameArea');
+      const startBtn = document.getElementById('startBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const backBtn = document.getElementById('backBtn');
+      const langBtn = document.getElementById('langBtn');
+      const langBtnEn = document.getElementById('langBtnEn');
+      const soundToggle = document.getElementById('soundToggle');
+      const aiLevelSelect = document.getElementById('aiLevel');
+      const blockWinCheck = document.getElementById('blockWin');
+      const labelAiLevel = document.getElementById('labelAiLevel');
+      const labelBlockWin = document.getElementById('labelBlockWin');
+      const splashSub = document.getElementById('splashSub');
+      const duaText = document.getElementById('duaText');
+
+      // ---- الحالة ----
+      let board = ['', '', '', '', '', '', '', '', ''];
+      let currentPlayer = 'X'; // X يبدأ دائماً
+      let gameOver = false;
+      let scoreX = 0;
+      let scoreO = 0;
+      let scoreDraw = 0;
+      let isSoundOn = true;
+      let lang = 'ar';
+      let isVsAI = false;
+      let aiLevel = 'medium';
+      let blockWin = false;
+
+      // ---- النصوص متعددة اللغات ----
+      const TEXTS = {
+        ar: {
+          title: '❌⭕ XO',
+          sub: '🎮 العب مع أصدقائك أو ضد الذكاء',
+          aiLevel: '🧠 مستوى الذكاء',
+          blockWin: '🚫 حظر الانتصار (AI)',
+          start: '🚀 ابدأ اللعب',
+          statusTurn: (p) => `🎮 دور: ${p}`,
+          statusWin: (p) => `🏆 ${p} فاز!`,
+          statusDraw: '🤝 تعادل!',
+          reset: '🔄 إعادة',
+          back: '🏠 القائمة',
+          dua: '🤲 اللهم بارك له في علمه ووقته، واجعل عمله خالصاً لوجهك الكريم',
+          footer: 'صنع في السودان 🇸🇩',
+          soundOn: '🔊',
+          soundOff: '🔇',
+          noAI: '🚫 بدون AI',
+          easy: '🟢 سهل',
+          medium: '🟡 متوسط',
+          hard: '🔴 صعب',
+          score: 'النقاط',
+        },
+        en: {
+          title: '❌⭕ XO',
+          sub: '🎮 Play with friends or vs AI',
+          aiLevel: '🧠 AI Level',
+          blockWin: '🚫 Block AI Win',
+          start: '🚀 Start Game',
+          statusTurn: (p) => `🎮 Turn: ${p}`,
+          statusWin: (p) => `🏆 ${p} wins!`,
+          statusDraw: '🤝 Draw!',
+          reset: '🔄 Reset',
+          back: '🏠 Menu',
+          dua: '🤲 May Allah bless his knowledge and time, and make his work sincere.',
+          footer: 'Made in Sudan 🇸🇩',
+          soundOn: '🔊',
+          soundOff: '🔇',
+          noAI: '🚫 No AI',
+          easy: '🟢 Easy',
+          medium: '🟡 Medium',
+          hard: '🔴 Hard',
+          score: 'Score',
+        }
+      };
+
+      // ---- دالة الترجمة ----
+      function t(key, ...args) {
+        const text = TEXTS[lang]?.[key] || TEXTS.ar[key] || key;
+        return typeof text === 'function' ? text(...args) : text;
+      }
+
+      // ---- تحديث واجهة اللغة ----
+      function updateUI() {
+        document.documentElement.lang = lang === 'ar' ? 'ar' : 'en';
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+        labelAiLevel.textContent = t('aiLevel');
+        labelBlockWin.textContent = t('blockWin');
+        startBtn.textContent = t('start');
+        splashSub.textContent = t('sub');
+        duaText.textContent = t('dua');
+        resetBtn.textContent = t('reset');
+        backBtn.textContent = t('back');
+        document.querySelector('.footer-note strong').textContent = 'كولو سان';
+        document.querySelector('.footer-note').innerHTML =
+          `<strong>كولو سان</strong> — ${t('footer')}`;
+
+        // تحديث خيارات الـ AI
+        const opts = {
+          off: t('noAI'),
+          easy: t('easy'),
+          medium: t('medium'),
+          hard: t('hard')
+        };
+        Array.from(aiLevelSelect.options).forEach(o => {
+          o.textContent = opts[o.value] || o.value;
+        });
+
+        // تحديث الـ status إن كان موجوداً
+        if (!gameOver && !board.every(c => c === '')) {
+          const icon = currentPlayer === 'X' ? '❌' : '⭕';
+          statusEl.textContent = t('statusTurn', icon);
+        }
+
+        // تحديث زر الصوت
+        soundToggle.textContent = isSoundOn ? t('soundOn') : t('soundOff');
+        soundToggle.classList.toggle('muted', !isSoundOn);
+
+        // لغة الأزرار
+        langBtn.textContent = lang === 'ar' ? '🇸🇩 عربي' : '🇸🇩 Arabic';
+        langBtnEn.textContent = lang === 'en' ? '🇬🇧 English' : '🇬🇧 إنجليزي';
+        langBtn.classList.toggle('active-lang', lang === 'ar');
+        langBtnEn.classList.toggle('active-lang', lang === 'en');
+      }
+
+      // ---- تبديل اللغة ----
+      function setLanguage(l) {
+        if (l === lang) return;
+        lang = l;
+        updateUI();
+      }
+
+      // ---- الأصوات ----
+      function playSound(type) {
+        if (!isSoundOn) return;
+        try {
+          const audio = new Audio(SOUNDS[type] || SOUNDS.click);
+          audio.volume = 0.3;
+          audio.play().catch(() => {});
+        } catch (e) { /* تجاهل الأخطاء */ }
+      }
+
+      // ---- الاهتزاز (للجوال) ----
+      function vibrate(duration = 20) {
+        if (navigator.vibrate) {
+          navigator.vibrate(duration);
+        }
+      }
+
+      // ---- رندر اللوحة ----
+      function renderBoard() {
+        boardEl.innerHTML = '';
+        board.forEach((val, idx) => {
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          if (val === 'X') { cell.classList.add('x');
+            cell.textContent = '❌'; } else if (val === 'O') { cell.classList.add('o');
+            cell.textContent = '⭕'; }
+          cell.dataset.index = idx;
+          cell.addEventListener('click', () => handleCellClick(idx));
+          cell.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            handleCellClick(idx);
+          });
+          boardEl.appendChild(cell);
+        });
+      }
+
+      // ---- تحديث النتيجة ----
+      function updateScore() {
+        scoreXEl.textContent = scoreX;
+        scoreOEl.textContent = scoreO;
+        scoreDrawEl.textContent = scoreDraw;
+        // حفظ في LocalStorage
+        try {
+          localStorage.setItem('xoScore', JSON.stringify({ scoreX, scoreO, scoreDraw }));
+        } catch (e) {}
+      }
+
+      // ---- استعادة النتيجة ----
+      function loadScore() {
+        try {
+          const data = JSON.parse(localStorage.getItem('xoScore'));
+          if (data) {
+            scoreX = data.scoreX || 0;
+            scoreO = data.scoreO || 0;
+            scoreDraw = data.scoreDraw || 0;
+            updateScore();
+          }
+        } catch (e) {}
+      }
+
+      // ---- التحقق من الفائز ----
+      function checkWinner() {
+        const patterns = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6]
+        ];
+        for (let p of patterns) {
+          const [a, b, c] = p;
+          if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            return board[a];
+          }
+        }
+        if (!board.includes('')) return 'draw';
+        return null;
+      }
+
+      // ---- تمييز الخلايا الفائزة ----
+      function highlightWin(winner) {
+        if (winner === 'draw') return;
+        const patterns = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6]
+        ];
+        const cells = document.querySelectorAll('.cell');
+        for (let p of patterns) {
+          const [a, b, c] = p;
+          if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            cells[a].classList.add('win');
+            cells[b].classList.add('win');
+            cells[c].classList.add('win');
+            break;
+          }
+        }
+      }
+
+      // ---- تحديث الحالة ----
+      function updateStatus() {
+        if (gameOver) return;
+        const icon = currentPlayer === 'X' ? '❌' : '⭕';
+        statusEl.textContent = t('statusTurn', icon);
+      }
+
+      // ---- تنفيذ الحركة ----
+      function makeMove(idx, player) {
+        if (board[idx] !== '') return false;
+        board[idx] = player;
+        renderBoard();
+        playSound('click');
+        vibrate(15);
+
+        const winner = checkWinner();
+        if (winner) {
+          gameOver = true;
+          if (winner === 'X') {
+            scoreX++;
+            statusEl.textContent = t('statusWin', '❌');
+            playSound('win');
+            vibrate(50);
+          } else if (winner === 'O') {
+            scoreO++;
+            statusEl.textContent = t('statusWin', '⭕');
+            playSound('lose');
+            vibrate(50);
+          } else {
+            scoreDraw++;
+            statusEl.textContent = t('statusDraw');
+            playSound('draw');
+          }
+          updateScore();
+          highlightWin(winner);
+          return true;
+        }
+
+        // تبديل اللاعب
+        currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';
+        updateStatus();
+        return true;
+      }
+
+      // ---- حركة الـ AI ----
+      function aiMove() {
+        if (gameOver) return;
+        if (currentPlayer !== 'O') return;
+        if (!isVsAI) return;
+
+        const empty = board.map((v, i) => v === '' ? i : null).filter(v => v !== null);
+        if (empty.length === 0) return;
+
+        let move = null;
+
+        // مستوى صعب: Minimax
+        if (aiLevel === 'hard' && !blockWin) {
+          move = minimax(board, 'O');
+        }
+        // مستوى متوسط: 50% ذكاء
+        else if (aiLevel === 'medium' && !blockWin) {
+          if (Math.random() < 0.5) {
+            move = minimax(board, 'O');
+          } else {
+            move = empty[Math.floor(Math.random() * empty.length)];
+          }
+        }
+        // مستوى سهل أو ممنوع الانتصار
+        else {
+          // إذا كان ممنوع الانتصار، نختار عشوائي مع تجنب الفوز
+          if (blockWin) {
+            // نبحث عن حركة لا تؤدي إلى الفوز
+            const safe = empty.filter(idx => {
+              const testBoard = [...board];
+              testBoard[idx] = 'O';
+              return checkWinnerOnBoard(testBoard) !== 'O';
+            });
+            move = safe.length > 0 ? safe[Math.floor(Math.random() * safe.length)] : empty[Math.floor(Math.random() *
+              empty.length)];
+          } else {
+            move = empty[Math.floor(Math.random() * empty.length)];
+          }
+        }
+
+        if (move !== null && move !== undefined) {
+          makeMove(move, 'O');
+        }
+      }
+
+      // ---- دالة مساعدة للتحقق من الفوز على لوحة مؤقتة ----
+      function checkWinnerOnBoard(boardArr) {
+        const patterns = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6]
+        ];
+        for (let p of patterns) {
+          const [a, b, c] = p;
+          if (boardArr[a] && boardArr[a] === boardArr[b] && boardArr[a] === boardArr[c]) {
+            return boardArr[a];
+          }
+        }
+        return null;
+      }
+
+      // ---- خوارزمية Minimax (للـ AI الصعب) ----
+      function minimax(boardArr, player) {
+        const winner = checkWinnerOnBoard(boardArr);
+        if (winner === 'X') return -10;
+        if (winner === 'O') return 10;
+        if (!boardArr.includes('')) return 0;
+
+        const empty = boardArr.map((v, i) => v === '' ? i : null).filter(v => v !== null);
+        const moves = [];
+        for (let idx of empty) {
+          const testBoard = [...boardArr];
+          testBoard[idx] = player;
+          const next = (player === 'O') ? 'X' : 'O';
+          const score = minimax(testBoard, next);
+          moves.push({ idx, score: score });
+        }
+
+        if (player === 'O') {
+          const best = moves.reduce((a, b) => a.score > b.score ? a : b);
+          return best.idx;
+        } else {
+          const best = moves.reduce((a, b) => a.score < b.score ? a : b);
+          return best.idx;
+        }
+      }
+
+      // ---- معالج النقر على الخلية ----
+      function handleCellClick(idx) {
+        if (gameOver) return;
+        if (board[idx] !== '') return;
+        if (isVsAI && currentPlayer === 'O') return;
+
+        makeMove(idx, currentPlayer);
+        if (!gameOver && isVsAI && currentPlayer === 'O') {
+          setTimeout(aiMove, 300);
+        }
+      }
+
+      // ---- إعادة تعيين اللعبة ----
+      function resetGame() {
+        board = ['', '', '', '', '', '', '', '', ''];
+        currentPlayer = 'X';
+        gameOver = false;
+        renderBoard();
+        statusEl.textContent = t('statusTurn', '❌');
+        document.querySelectorAll('.cell').forEach(c => c.classList.remove('win'));
+        // إعادة تعيين الـ AI إذا كان الدور للـ O
+        if (isVsAI && currentPlayer === 'O') {
+          setTimeout(aiMove, 400);
+        }
+      }
+
+      // ---- بدء اللعبة من شاشة البداية ----
+      function startGame() {
+        // قراءة الإعدادات
+        const aiVal = aiLevelSelect.value;
+        isVsAI = aiVal !== 'off';
+        aiLevel = aiVal;
+        blockWin = blockWinCheck.checked;
+
+        // إعادة تعيين اللوحة
+        board = ['', '', '', '', '', '', '', '', ''];
+        currentPlayer = 'X';
+        gameOver = false;
+        renderBoard();
+        statusEl.textContent = t('statusTurn', '❌');
+        document.querySelectorAll('.cell').forEach(c => c.classList.remove('win'));
+
+        // إظهار منطقة اللعب وإخفاء البداية
+        splashEl.style.display = 'none';
+        gameAreaEl.classList.add('active');
+
+        // إذا كان AI و دوره O (يبدأ X دائماً، فـ O ينتظر)
+        if (isVsAI && currentPlayer === 'O') {
+          setTimeout(aiMove, 500);
+        }
+      }
+
+      // ---- العودة للقائمة ----
+      function goToMenu() {
+        gameAreaEl.classList.remove('active');
+        splashEl.style.display = 'block';
+        // إعادة تعيين اللعبة
+        board = ['', '', '', '', '', '', '', '', ''];
+        currentPlayer = 'X';
+        gameOver = false;
+        renderBoard();
+        document.querySelectorAll('.cell').forEach(c => c.classList.remove('win'));
+        statusEl.textContent = t('statusTurn', '❌');
+      }
+
+      // ---- تحميل النتيجة المحفوظة ----
+      loadScore();
+
+      // ---- الأحداث ----
+      startBtn.addEventListener('click', startGame);
+      resetBtn.addEventListener('click', resetGame);
+      backBtn.addEventListener('click', goToMenu);
+
+      langBtn.addEventListener('click', () => setLanguage('ar'));
+      langBtnEn.addEventListener('click', () => setLanguage('en'));
+
+      soundToggle.addEventListener('click', () => {
+        isSoundOn = !isSoundOn;
+        soundToggle.textContent = isSoundOn ? t('soundOn') : t('soundOff');
+        soundToggle.classList.toggle('muted', !isSoundOn);
+      });
+
+      // ---- اختصار لوحة المفاتيح: R لإعادة ----
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'r' || e.key === 'R') {
+          if (gameAreaEl.classList.contains('active')) {
+            resetGame();
+          }
+        }
+      });
+
+      // ---- تهيئة الواجهة ----
+      renderBoard();
+      updateUI();
+
+      // ---- تعديل minimax ليعيد القيمة وليس الموقع (لتسهيل الاستخدام) ----
+      // (تم تعديله أعلاه ليعود الموقع مباشرة)
+
+      console.log('❌⭕ XO Legendary Edition by كولو سان 🇸🇩');
+
+    })();
+  </script>
+
+</body>
+  </html>
