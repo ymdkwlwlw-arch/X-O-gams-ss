@@ -10,11 +10,15 @@
 
 `الإصدار 2.0` · `Version 2.0` · `PWA` · `عربي / English` · `بلا إعلانات` · `Made in Sudan`
 
+### [▶ العب الآن · Play now](https://ymdkwlwlw-arch.github.io/X-O-gams-ss/)
+
+© 2026 ڪولو سآن (Red X) · جميع الحقوق محفوظة · All rights reserved
+
 </div>
 
 ---
 
-[العربية](#العربية) · [English](#english)
+[العربية](#العربية) · [English](#english) · [الحقوق والترخيص](#الحقوق-والترخيص) · [Rights & License](#rights--license)
 
 ---
 
@@ -25,6 +29,8 @@
 
 ### نبذة
 **ألعاب كولو** مجموعة من عشر ألعاب خفيفة في ملف HTML واحد، تعمل على الهاتف والحاسوب دون إنترنت بعد أول فتح. لا حسابات ولا إعلانات ولا تتبّع، وبياناتك تبقى على جهازك فقط.
+
+**الرابط المباشر:** https://ymdkwlwlw-arch.github.io/X-O-gams-ss/
 
 ### الألعاب
 
@@ -52,26 +58,28 @@
 - **أصوات مولّدة داخليًا** دون ملفات صوت خارجية.
 - **سريعة الاستجابة:** تناسب شاشات الهاتف وتحترم تقليل الحركة في إعدادات الجهاز.
 
-### التشغيل
-**الأسهل:** افتح `index.html` مباشرة في المتصفح.
+### التثبيت واللعب
+**من الرابط (الأسهل):** افتح الرابط في كروم ← القائمة ⋮ ← **تثبيت التطبيق** / Install app. وفي آيفون: سفاري ← مشاركة ← **إضافة إلى الشاشة الرئيسية**. بعد أول فتح متصل يعمل دون إنترنت.
 
-**للتثبيت كتطبيق** يلزم تقديمها عبر `https` أو `localhost`:
+**محليًا:** افتح `index.html` مباشرة، وللتثبيت كتطبيق قدّمه عبر `localhost`:
 ```bash
-cd kolo-arcade
 python -m http.server 8080
 # ثم افتح http://localhost:8080
 ```
-وبعدها من قائمة المتصفح اختر **إضافة إلى الشاشة الرئيسية**.
 
-### النشر على GitHub Pages
-1. ارفع الملفات إلى مستودع عام.
-2. **Settings ← Pages ← Deploy from a branch ← main ← / (root) ← Save**.
-3. يعمل الموقع على `https://USERNAME.github.io/REPO/`.
+### سجل الإصدارات
 
-**عند تحديث الملفات** غيّر رقم الذاكرة في `sw.js` (مثل `kolo-v3` إلى `kolo-v4`) كي يحمّل المتصفح النسخة الجديدة.
+**الإصدار 2.0** (2026)
+- حذف الثعبان وحجر ورقة مقص.
+- إضافة أربع ألعاب: ريفيرسي، النقاط والمربعات، كاسح الألغام، مبارزة الأصابع.
+- واجهة القائمة بعمودين، وإنجازات جديدة.
+- قسم «حول التطبيق».
+- أيقونة جديدة، وتحسين العمل دون إنترنت.
+- الذكاء المتعلّم يبقى في إكس أو وأربعة في صف.
 
-### إنشاء ملف APK
-أبسط طريقة مجانية: [PWABuilder](https://www.pwabuilder.com)، الصق رابط موقعك ثم **Package for stores ← Android**. احتفظ بملف التوقيع `signing.keystore` وكلمة سره في مكان آمن، فهو لازم لتحديث التطبيق لاحقًا.
+**الإصدار 1.0**
+- إكس أو، أربعة في صف، الذاكرة، حجر ورقة مقص، الثعبان، 2048، سيمون، اضرب الهدف.
+- نظام الخبرة والمستويات والمهمة اليومية والمظاهر.
 
 ### هيكل المشروع
 ```
@@ -79,11 +87,14 @@ python -m http.server 8080
 ├── sw.js                 Service Worker للعمل دون إنترنت
 ├── manifest.webmanifest  بيانات التثبيت
 ├── icon-192.png
-└── icon-512.png
+├── icon-512.png
+├── LICENSE               الحقوق والترخيص
+└── README.md
 ```
+**عند تحديث الملفات** غيّر رقم الذاكرة في `sw.js` (مثل `kolo-v3` إلى `kolo-v4`) كي يحمّل المتصفح النسخة الجديدة.
 
 ### الخصوصية والبيانات
-تُحفظ الإعدادات والنتائج وتعلّم الذكاء في `localStorage` على جهازك فقط، ولا يُرسل شيء إلى أي خادم. مسح بيانات المتصفح يمسحها.
+تُحفظ الإعدادات والنتائج وتعلّم الذكاء في `localStorage` على جهازك فقط، ولا يُرسل شيء إلى أي خادم، ولا تُجمع أي بيانات. مسح بيانات المتصفح يمسحها.
 
 ### حدود معروفة
 - لا يوجد لعب بين جهازين عبر الشبكة، فالتناوب على جهاز واحد فقط.
@@ -93,11 +104,34 @@ python -m http.server 8080
 ### حول المشروع
 > لا مؤسسة وراء هذا العمل ولا فريق؛ يدان اثنتان وسهر ليالٍ. إن وجدتَ فيه خيرًا فأعِده إلى صاحبه، وإن وجدتَ خللًا فدلّني عليه، فما زلتُ أتعلّم.
 
-**تطوير وتعديل:** ڪولو سآن (Red X)
+**المطوّر:** ڪولو سآن (Red X) · صنع في السودان
+**الحساب:** [@ymdkwlwlw-arch](https://github.com/ymdkwlwlw-arch)
+
 *اللهم بارك له في علمه ووقته، واجعل عمله خالصًا لوجهك الكريم.*
 
-### الإبلاغ عن مشكلة
-افتح **Issues** في المستودع واذكر: نوع الجهاز والمتصفح، واللعبة، وخطوات تكرار المشكلة، ولقطة شاشة إن أمكن. كل ملاحظة موضع شكر.
+### الإبلاغ عن مشكلة أو اقتراح
+افتح [Issues](https://github.com/ymdkwlwlw-arch/X-O-gams-ss/issues) واذكر: نوع الجهاز والمتصفح، واللعبة، وخطوات تكرار المشكلة، ولقطة شاشة إن أمكن. كل ملاحظة موضع شكر.
+
+<a id="الحقوق-والترخيص"></a>
+### الحقوق والترخيص
+
+**© 2026 ڪولو سآن (Red X). جميع الحقوق محفوظة.**
+
+هذا العمل، ويشمل الكود والتصميم والأيقونة والنصوص والأسماء، ملك لمطوّره. الكود ظاهر للاطلاع والتعلّم فقط، وليس مفتوح المصدر.
+
+**مسموح:**
+- اللعب واستخدام التطبيق للاستعمال الشخصي وغير التجاري، ومشاركة رابطه.
+- قراءة الكود للتعلّم.
+
+**غير مسموح دون إذن كتابي مسبق من المطوّر:**
+- نسخ الكود أو أي جزء منه أو إعادة نشره.
+- تعديله أو البناء عليه أو نشر نسخة مشتقة.
+- بيعه أو إعادة تغليفه كتطبيق أو نشره في متجر تحت اسم آخر.
+- إزالة اسم المطوّر أو قسم «حول التطبيق» أو إشعار الحقوق.
+
+لطلب إذن أو للاستفسار افتح [Issue](https://github.com/ymdkwlwlw-arch/X-O-gams-ss/issues) في المستودع. والنص الكامل في ملف [LICENSE](LICENSE).
+
+> ملاحظة: بحكم شروط استخدام GitHub، يحق لمن يرى المستودع العام أن يعمل له Fork داخل المنصة لغرض الاطلاع، وهذا لا يمنحه حق إعادة النشر أو الاستخدام خارجها.
 
 </div>
 
@@ -109,6 +143,8 @@ python -m http.server 8080
 
 ### About
 **Kolo Arcade** is a collection of ten lightweight games in a single HTML file. It runs on phones and desktops and works offline after the first load. No accounts, no ads, no tracking: your data never leaves your device.
+
+**Live:** https://ymdkwlwlw-arch.github.io/X-O-gams-ss/
 
 ### Games
 
@@ -136,26 +172,28 @@ python -m http.server 8080
 - **Procedurally generated sounds**, no external audio files.
 - **Responsive**, mobile-first, and respects reduced-motion settings.
 
-### Run
-**Simplest:** open `index.html` directly in a browser.
+### Install & play
+**From the link (easiest):** open it in Chrome → menu ⋮ → **Install app**. On iPhone: Safari → Share → **Add to Home Screen**. After the first online load it works offline.
 
-**To install as an app**, serve it over `https` or `localhost`:
+**Locally:** open `index.html` directly, or serve it on `localhost` to install it:
 ```bash
-cd kolo-arcade
 python -m http.server 8080
 # then open http://localhost:8080
 ```
-Then use the browser menu: **Add to Home Screen**.
 
-### Deploy on GitHub Pages
-1. Push the files to a public repository.
-2. **Settings → Pages → Deploy from a branch → main → / (root) → Save**.
-3. Your site is live at `https://USERNAME.github.io/REPO/`.
+### Changelog
 
-**When you update the files**, bump the cache name in `sw.js` (e.g. `kolo-v3` to `kolo-v4`) so browsers fetch the new version.
+**Version 2.0** (2026)
+- Removed Snake and Rock Paper Scissors.
+- Added four games: Reversi, Dots & Boxes, Minesweeper, Finger Duel.
+- Two-column game menu and new achievements.
+- New "About" section.
+- New icon and improved offline support.
+- The learning AI remains in Tic-Tac-Toe and Connect Four.
 
-### Build an APK
-The simplest free route is [PWABuilder](https://www.pwabuilder.com): paste your site URL, then **Package for stores → Android**. Keep `signing.keystore` and its password safe; you need it to publish updates later.
+**Version 1.0**
+- Tic-Tac-Toe, Connect Four, Memory, Rock Paper Scissors, Snake, 2048, Simon, Aim Trainer.
+- XP, levels, daily mission and themes.
 
 ### Project structure
 ```
@@ -163,11 +201,14 @@ The simplest free route is [PWABuilder](https://www.pwabuilder.com): paste your 
 ├── sw.js                 Service Worker for offline use
 ├── manifest.webmanifest  install metadata
 ├── icon-192.png
-└── icon-512.png
+├── icon-512.png
+├── LICENSE               rights and license
+└── README.md
 ```
+**When you update the files**, bump the cache name in `sw.js` (e.g. `kolo-v3` to `kolo-v4`) so browsers fetch the new version.
 
 ### Privacy & data
-Settings, scores and AI learning are stored in `localStorage` on your device only. Nothing is sent to any server. Clearing browser data erases them.
+Settings, scores and AI learning are stored in `localStorage` on your device only. Nothing is sent to any server and no data is collected. Clearing browser data erases them.
 
 ### Known limits
 - No networked play between two devices; friends take turns on one device.
@@ -177,16 +218,38 @@ Settings, scores and AI learning are stored in `localStorage` on your device onl
 ### About the project
 > No company stands behind this work and no team: just two hands and sleepless nights. If you find good in it, return it to its owner; if you find a flaw, point it out to me, for I am still learning.
 
-**Developed & modified by:** ڪولو سآن (Red X)
+**Developer:** ڪولو سآن (Red X) · Made in Sudan
+**Account:** [@ymdkwlwlw-arch](https://github.com/ymdkwlwlw-arch)
+
 *May Allah bless his knowledge and time, and make his work sincere.*
 
-### Reporting issues
-Open an **Issue** and include: device and browser, the game, steps to reproduce, and a screenshot if possible. Every report is appreciated.
+### Reporting issues or suggestions
+Open an [Issue](https://github.com/ymdkwlwlw-arch/X-O-gams-ss/issues) and include: device and browser, the game, steps to reproduce, and a screenshot if possible. Every report is appreciated.
+
+### Rights & License
+
+**© 2026 ڪولو سآن (Red X). All rights reserved.**
+
+This work, including its code, design, icon, text and names, belongs to its developer. The source is visible for viewing and learning only; it is not open source.
+
+**Allowed:**
+- Playing and using the app for personal, non-commercial use, and sharing its link.
+- Reading the code to learn.
+
+**Not allowed without prior written permission from the developer:**
+- Copying the code or any part of it, or republishing it.
+- Modifying it, building on it, or publishing a derivative.
+- Selling it, repackaging it as an app, or publishing it to a store under another name.
+- Removing the developer's name, the "About" section, or the copyright notice.
+
+To request permission or ask a question, open an [Issue](https://github.com/ymdkwlwlw-arch/X-O-gams-ss/issues) in this repository. The full text is in the [LICENSE](LICENSE) file.
+
+> Note: under GitHub's Terms of Service, anyone viewing a public repository may fork it within the platform for viewing purposes. This does not grant any right to republish or use it outside the platform.
 
 ---
 
 <div align="center">
 
-صنع في السودان · Made in Sudan · © 2026
+صنع في السودان · Made in Sudan · © 2026 ڪولو سآن (Red X)
 
 </div>
